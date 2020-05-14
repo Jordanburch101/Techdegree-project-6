@@ -5,7 +5,7 @@ const ul = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset'); // Start game button
 const scoreBoard = document.querySelector('#scoreboard ol');
 let missed = 0; // Hearts of the player
-let correct = 0; // Correct letters;
+let correct = -2; // Correct letters;
 let match = ''; // Used to check if button pressed matches text content of li
 
 const phrases = [
@@ -19,6 +19,7 @@ const phrases = [
 // Remove overplay after clicking start
 startButton.addEventListener('click', (e) => {
     overlay.style.display = 'none';
+    
 });
 
 // Choose one of the phrases from the phrases array
@@ -57,6 +58,7 @@ function checkLetter(button) {
         if (li[i].textContent === button.textContent) {
             li[i].className += ' show';
             match = li[i];
+            correct += 1;
             // return li[i].textContent;
         } else {
             li.className = '';
@@ -65,17 +67,26 @@ function checkLetter(button) {
     }
 }
 
-// Remove heart when wrong button is picked
+// Win checker 
+function checkWin() {
+    let li = document.getElementsByClassName('letter');
+    let liShow = document.getElementsByClassName('show');
+    if (liShow.length === li.length) {        
+        return true;
+    } else {
+        return null;
+    }
+}
 
-// function heart(button) {
-
-// }
-// function checkWin {
-//     let li = document.getElementsByClassName('letter');
-//     if (li.length === correct) {
-//         overlay.style.display = '';
-//     }
-// }
+// Lose checker 
+function checkLose() {
+    li = scoreBoard.children;
+    if (li.length === 0){        
+        return true;
+    } else {
+        return null;
+    }
+}
 
 
 
@@ -85,17 +96,35 @@ qwerty.addEventListener('click', (e) => {
     const letterChecked = checkLetter(letterPressed)
     if (match.textContent === letterPressed.textContent) {
         letterPressed.className = 'match';
-        correct += 1;
     } else {
         letterPressed.className = 'chosen';
         const li = scoreBoard.firstElementChild;
         scoreBoard.removeChild(li);
         missed += 1;
     }
-
-    
-  } 
-    
+  }   
+  const winCheck = checkWin();
+  const loseCheck = checkLose();
+  if (winCheck === true) {
+    const title = document.querySelector('.title')
+    const button = document.querySelector('.btn__reset')
+    title.textContent = 'You have Won!'
+    button.textContent = 'play again?'
+    overlay.style.display = '';
+    startButton.addEventListener('click', (e) => {
+        location.reload();
+    });
+     
+  } else if (loseCheck === true) {
+    const title = document.querySelector('.title')
+    const button = document.querySelector('.btn__reset')
+    title.textContent = 'You have lost!'
+    button.textContent = 'Try again?'
+    overlay.style.display = '';
+    startButton.addEventListener('click', (e) => {
+        location.reload();
+    });
+  }
 });
 
 

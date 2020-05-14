@@ -55,6 +55,14 @@ button {
   transition: var(--transition);
 }
 
+button:hover {
+  transform: scale(1.2);
+}
+
+button:focus {
+  rotate: 15deg;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
