@@ -193,6 +193,11 @@ button:focus {
   z-index: 100;
 }
 
+#scoreboard ol li img{
+  height: 35px;
+  width: 30px;
+}
+
 .title {
   color: #FFF;
 }
