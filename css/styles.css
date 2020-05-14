@@ -60,6 +60,9 @@ button:hover {
   transform: scale(1.2);
 }
 
+button:focus {
+  outline: none;
+}
 
 .main-container {
   display: flex;
