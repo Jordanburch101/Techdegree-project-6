@@ -15,12 +15,10 @@ const phrases = [
     "knock your socks off",
     "rain on your parade",
 ];
-
 // Remove overplay after clicking start
 startButton.addEventListener('click', (e) => {
     overlay.style.display = 'none';
 });
-
 // Choose one of the phrases from the phrases array
 function getRandomPhraseAsArray(arr) {
     function getRandomArray (arr) {
@@ -31,7 +29,6 @@ function getRandomPhraseAsArray(arr) {
     const string = getRandomArray(arr).split("");
     return string;
 }
-
 // Convert the chosen phrase into its own array of strings
 function addPhraseToDisplay(arr) {
     const phraseArray = getRandomPhraseAsArray(arr);
@@ -49,7 +46,6 @@ function addPhraseToDisplay(arr) {
     }
 
 }
-
 // Loops through li's in the Ul to check if their text content matches the button pressed
 function checkLetter(button) {
     let li = document.getElementsByClassName('letter');
@@ -65,7 +61,6 @@ function checkLetter(button) {
         
     }
 }
-
 // Win checker 
 function checkWin() {
     let li = document.getElementsByClassName('letter');
@@ -76,7 +71,6 @@ function checkWin() {
         return null;
     }
 }
-
 // Lose checker 
 function checkLose() {
     li = scoreBoard.children;
@@ -86,9 +80,7 @@ function checkLose() {
         return null;
     }
 }
-
-
-
+// Event listenr for QWERTY
 qwerty.addEventListener('click', (e) => {
   if(e.target.tagName === 'BUTTON') {
     const letterPressed = e.target;
@@ -97,18 +89,16 @@ qwerty.addEventListener('click', (e) => {
         letterPressed.className = 'match';
     } else {
         letterPressed.className = 'chosen';
-        //const li = scoreBoard.firstElementChild;
         const li = document.querySelector('.tries')
         const img = li.firstElementChild
         img.src = "images/lostHeart.png";
         li.className = 'lost';
-        // scoreBoard.removeChild(li);
-
         missed += 1;
     }
   }   
   const winCheck = checkWin();
   const loseCheck = checkLose();
+  // Win checker
   if (winCheck === true) {
     const title = document.querySelector('.title')
     const button = document.querySelector('.btn__reset')
@@ -119,7 +109,7 @@ qwerty.addEventListener('click', (e) => {
     startButton.addEventListener('click', (e) => {
         location.reload();
     });
-     
+    // Lose checker
   } else if (loseCheck === true) {
     const title = document.querySelector('.title')
     const button = document.querySelector('.btn__reset')
