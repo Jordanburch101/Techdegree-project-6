@@ -112,6 +112,10 @@ button {
   color: #FFFFFF;
 }
 
+.match {
+  background-color: chocolate;
+}
+
 .btn__reset {
   padding: 8px;
   margin: 50px auto;

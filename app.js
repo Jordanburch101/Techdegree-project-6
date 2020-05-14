@@ -1,10 +1,12 @@
-const qwerty = document.getElementById('qwerty');
+const keyBoard = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const overlay = document.getElementById('overlay');
 const ul = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset'); // Start game button
 const scoreBoard = document.querySelector('#scoreboard ol');
 let missed = 0; // Hearts of the player
+let correct = 0; // Correct letters;
+let match = ''; // Used to check if button pressed matches text content of li
 
 const phrases = [
     "foaming at the mouth",
@@ -45,25 +47,55 @@ function addPhraseToDisplay(arr) {
             ul.appendChild(li)
         }
     }
+
 }
 
-
-function checkLetter(key) {
-    const li = document.getElementsByClassName('letter');
+// Loops through li's in the Ul to check if their text content matches the button pressed
+function checkLetter(button) {
+    let li = document.getElementsByClassName('letter');
     for(let i = 0; i < li.length; i += 1) {
-        if(li[i].textContent === key) {
+        if (li[i].textContent === button.textContent) {
             li[i].className += ' show';
-            return li[i];
+            match = li[i];
+            // return li[i].textContent;
         } else {
-            //return null;
+            li.className = '';
         }
+        
     }
-    
 }
+
+// Remove heart when wrong button is picked
+
+// function heart(button) {
+
+// }
+// function checkWin {
+//     let li = document.getElementsByClassName('letter');
+//     if (li.length === correct) {
+//         overlay.style.display = '';
+//     }
+// }
+
+
 
 qwerty.addEventListener('click', (e) => {
-    const letter = e.target;
-    checkLetter(letter);
+  if(e.target.tagName === 'BUTTON') {
+    const letterPressed = e.target;
+    const letterChecked = checkLetter(letterPressed)
+    if (match.textContent === letterPressed.textContent) {
+        letterPressed.className = 'match';
+        correct += 1;
+    } else {
+        letterPressed.className = 'chosen';
+        const li = scoreBoard.firstElementChild;
+        scoreBoard.removeChild(li);
+        missed += 1;
+    }
+
+    
+  } 
+    
 });
 
 
