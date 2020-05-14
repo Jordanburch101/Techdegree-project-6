@@ -19,7 +19,6 @@ const phrases = [
 // Remove overplay after clicking start
 startButton.addEventListener('click', (e) => {
     overlay.style.display = 'none';
-    
 });
 
 // Choose one of the phrases from the phrases array
@@ -81,7 +80,7 @@ function checkWin() {
 // Lose checker 
 function checkLose() {
     li = scoreBoard.children;
-    if (li.length === 0){        
+    if (missed === 5){        
         return true;
     } else {
         return null;
@@ -98,8 +97,13 @@ qwerty.addEventListener('click', (e) => {
         letterPressed.className = 'match';
     } else {
         letterPressed.className = 'chosen';
-        const li = scoreBoard.firstElementChild;
-        scoreBoard.removeChild(li);
+        //const li = scoreBoard.firstElementChild;
+        const li = document.querySelector('.tries')
+        const img = li.firstElementChild
+        img.src = "images/lostHeart.png";
+        li.className = 'lost';
+        // scoreBoard.removeChild(li);
+
         missed += 1;
     }
   }   
@@ -111,6 +115,7 @@ qwerty.addEventListener('click', (e) => {
     title.textContent = 'You have Won!'
     button.textContent = 'play again?'
     overlay.style.display = '';
+    overlay.className += ' win'
     startButton.addEventListener('click', (e) => {
         location.reload();
     });
@@ -120,6 +125,8 @@ qwerty.addEventListener('click', (e) => {
     const button = document.querySelector('.btn__reset')
     title.textContent = 'You have lost!'
     button.textContent = 'Try again?'
+    overlay.className += ' lose'
+    startButton.className += ' btn_lose'
     overlay.style.display = '';
     startButton.addEventListener('click', (e) => {
         location.reload();

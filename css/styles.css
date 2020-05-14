@@ -4,9 +4,9 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
-  --color-start: #5b85b7;
+  --color-win: #7effdb;
+  --color-lose: #f73859;
+  --color-start: #574b90;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
@@ -37,7 +37,7 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: var(--font-size-large);
   margin: 0;
 }
@@ -47,6 +47,7 @@ button {
   border: 1px solid transparent;
   padding: .5rem 1rem;
   color: var(--color-keys);
+  font-family: 'Roboto', sans-serif;
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
   border-radius: 5px;
@@ -59,9 +60,6 @@ button:hover {
   transform: scale(1.2);
 }
 
-button:focus {
-  rotate: 15deg;
-}
 
 .main-container {
   display: flex;
@@ -102,8 +100,11 @@ button:focus {
 }
 
 .show {
-  color: #000;
-  background-color: #76CE82;
+  color: #fff;
+  background-color: #48e6b1;
+  font-family: 'Roboto', sans-serif;
+  transition: transform .6s ease-in-out;
+  transform: rotate(360deg);
 }
 
 /* Keyboard */
@@ -114,22 +115,63 @@ button:focus {
 }
 
 .chosen {
-  background: var(--color-neutral);
+  background: #303a52;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .match {
-  background-color: chocolate;
+  background-color: #ff6f3c;
+  color: #FFFFFF;
+
 }
 
 .btn__reset {
   padding: 8px;
   margin: 50px auto;
-  background: #FFFFFF;
+  background: #fab57a;
   border-radius: 5px;
+  box-shadow: 2px 2px 1px 1px rgba(255, 182, 122, 0.493);
   font-size: var(--font-size-medium);
+}
+
+.built-using {
+  margin-top: 5em;
+  font-family: 'Roboto', sans-serif;
+  font-size: .8em;
+  margin-bottom: -20em;
+}
+
+.built-using .javascript {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 10px;
+  border-radius: 10px;
+  color: #FFF;
+  background-color: rgb(207, 52, 104);
+  transition: transform .2s ease-in-out;
+  
+}
+
+.built-using .javascript:hover {
+  transform: scale(1.1);
+}
+
+.built-using .javascript a {
+  text-decoration: none;
+}
+
+.built-using img {
+  margin-left: .5em;
+}
+
+.git {
+  width: 30px;
+}
+
+.tries {
+  transition: transform .2s ease-in-out;
 }
 
 /* Overlay */
@@ -145,6 +187,7 @@ button:focus {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 100;
 }
 
 .title {
@@ -171,6 +214,15 @@ button:focus {
   background-color: var(--color-lose);
 }
 
+.btn_lose {
+  background-color: #FFF;
+  box-shadow: 2px 2px 1px 1px rgba(255, 255, 255, 0.493);
+}
+
 .lose a {
   color: var(--color-lose);
+}
+
+a:link, a:visited {
+  color: #FFF;
 }
