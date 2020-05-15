@@ -106,6 +106,7 @@ button:focus {
   color: #fff;
   background-color: #48e6b1;
   font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   transition: transform .6s ease-in-out;
   transform: rotate(360deg);
 }
@@ -222,7 +223,7 @@ button:focus {
   background-color: var(--color-lose);
 }
 
-.btn_lose {
+.btn_end {
   background-color: #FFF;
   box-shadow: 2px 2px 1px 1px rgba(255, 255, 255, 0.493);
 }

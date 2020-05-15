@@ -5,7 +5,6 @@ const ul = document.querySelector('#phrase ul');
 const startButton = document.querySelector('.btn__reset'); // Start game button
 const scoreBoard = document.querySelector('#scoreboard ol');
 let missed = 0; // Hearts of the player
-let correct = -2; // Correct letters;
 let match = ''; // Used to check if button pressed matches text content of li
 
 const phrases = [
@@ -46,6 +45,9 @@ function addPhraseToDisplay(arr) {
     }
 
 }
+// Add phrase to DOM
+addPhraseToDisplay(phrases);
+
 // Loops through li's in the Ul to check if their text content matches the button pressed
 function checkLetter(button) {
     let li = document.getElementsByClassName('letter');
@@ -53,8 +55,6 @@ function checkLetter(button) {
         if (li[i].textContent === button.textContent) {
             li[i].className += ' show';
             match = li[i];
-            correct += 1;
-            // return li[i].textContent;
         } else {
             li.className = '';
         }
@@ -85,6 +85,7 @@ qwerty.addEventListener('click', (e) => {
   if(e.target.tagName === 'BUTTON') {
     const letterPressed = e.target;
     const letterChecked = checkLetter(letterPressed)
+    letterPressed.disabled = true;
     if (match.textContent === letterPressed.textContent) {
         letterPressed.className = 'match';
     } else {
@@ -104,8 +105,9 @@ qwerty.addEventListener('click', (e) => {
     const button = document.querySelector('.btn__reset')
     title.textContent = 'You have Won!'
     button.textContent = 'play again?'
-    overlay.style.display = '';
     overlay.className += ' win'
+    startButton.className += ' btn_end'
+    overlay.style.display = '';
     startButton.addEventListener('click', (e) => {
         location.reload();
     });
@@ -116,7 +118,7 @@ qwerty.addEventListener('click', (e) => {
     title.textContent = 'You have lost!'
     button.textContent = 'Try again?'
     overlay.className += ' lose'
-    startButton.className += ' btn_lose'
+    startButton.className += ' btn_end'
     overlay.style.display = '';
     startButton.addEventListener('click', (e) => {
         location.reload();
@@ -124,6 +126,3 @@ qwerty.addEventListener('click', (e) => {
   }
 });
 
-
-// For testing
-addPhraseToDisplay(phrases);
